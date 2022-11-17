@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class BaseRecyclerViewAdapter<T>(private val callback: ((item: T) -> Unit)? = null) :
     RecyclerView.Adapter<DataBindingViewHolder<T>>() {
 
-    private var _items: MutableList<T> = mutableListOf()
+    private var Items: MutableList<T> = mutableListOf()
 
     /**
      * Returns the _items data
      */
-    private val items: List<T>?
-        get() = this._items
 
-    override fun getItemCount() = _items.size
+    private val items: List<T>?
+        get() = this.Items
+    override fun getItemCount() = Items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder<T> {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -31,6 +31,7 @@ abstract class BaseRecyclerViewAdapter<T>(private val callback: ((item: T) -> Un
 
         return DataBindingViewHolder(binding)
     }
+    fun getItem(position: Int) = Items[position]
 
     override fun onBindViewHolder(holder: DataBindingViewHolder<T>, position: Int) {
         val item = getItem(position)
@@ -39,24 +40,20 @@ abstract class BaseRecyclerViewAdapter<T>(private val callback: ((item: T) -> Un
             callback?.invoke(item)
         }
     }
-
-    fun getItem(position: Int) = _items[position]
-
     /**
      * Adds data to the actual Dataset
      *
      * @param items to be merged
      */
     fun addData(items: List<T>) {
-        _items.addAll(items)
+        Items.addAll(items)
         notifyDataSetChanged()
     }
-
     /**
      * Clears the _items data
      */
     fun clear() {
-        _items.clear()
+        Items.clear()
         notifyDataSetChanged()
     }
 
