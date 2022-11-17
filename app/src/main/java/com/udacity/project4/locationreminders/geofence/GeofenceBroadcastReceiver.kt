@@ -3,7 +3,6 @@ package com.udacity.project4.locationreminders.geofence
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-
 /**
  * Triggered by the Geofence.  Since we can have many Geofences at once, we pull the request
  * ID from the first Geofence, and locate it within the cached data in our Room DB
@@ -22,10 +21,8 @@ class GeofenceBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
 
-        if (intent.action == ACTION_GEOFENCE_EVENT) {
+        if(intent.action == ACTION_GEOFENCE_EVENT) {
             GeofenceTransitionsJobIntentService.enqueueWork(context, intent)
-
         }
-
     }
 }
