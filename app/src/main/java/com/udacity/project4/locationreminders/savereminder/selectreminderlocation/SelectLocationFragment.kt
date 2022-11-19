@@ -84,7 +84,8 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
                 _viewModel.navigationCommand.value =
                     NavigationCommand.Back
             }
-            else -> Toast.makeText(requireContext(), "You should pick a place", Toast.LENGTH_SHORT)
+            //display toast to user when not select anyLocation
+            else -> Toast.makeText(requireContext(), "You should select a place", Toast.LENGTH_SHORT)
                 .show()
         }
     }
@@ -161,6 +162,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
                 mMap.isMyLocationEnabled = true
                 Toast.makeText(
                     requireContext(),
+                    //display toast to notified the user that he has been accepted the permission
                     "You has been accepted the permission",
                     Toast.LENGTH_LONG
                 ).show()
@@ -171,7 +173,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
                 )
                 Toast.makeText(
                     requireContext(),
-                    "You must enable your Location",
+                    "Please,You must enable your Location",
                     Toast.LENGTH_LONG
                 ).show()
             }
